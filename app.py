@@ -2,6 +2,18 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
+import os
+import shutil
+
+DB_PATH = os.getenv("SPELLFORGE_DB", "spells.db")
+
+# Automatically copy from local template if the persistent DB doesn't exist
+if not os.path.exists(DB_PATH):
+    if os.path.exists("spells.db"):
+        print("[INFO] No persistent DB found. Copying local spells.db to disk...")
+        shutil.copyfile("spells.db", DB_PATH)
+    else:
+        print("[WARNING] No spells.db found to copy!")
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
