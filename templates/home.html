@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpellForge - Enter Mage ID</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Welcome to SpellForge</h1>
+    <form method="POST">
+        <label for="mage_id">Enter Mage ID:</label>
+        <input type="text" name="mage_id" required>
+        <button type="submit">Access Spellbook</button>
+    </form>
+</body>
+</html>

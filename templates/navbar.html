@@ -1,0 +1,10 @@
+<div style="background: #111; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <a href="{{ url_for('menu', mage_id=session.get('mage_id')) }}" class="spell-button">Menu</a>
+        <a href="{{ url_for('known_spells', mage_id=session.get('mage_id')) }}" class="spell-button">Known Spells</a>
+        <a href="{{ url_for('forge', mage_id=session.get('mage_id')) }}" class="spell-button">Forge</a>
+    </div>
+    {% if session.get('mage_id') %}
+        <div style="color: #ccc;">Signed in as <strong>{{ session['mage_id'] }}</strong> | <a href="{{ url_for('logout') }}" style="color: #f99;">Logout</a></div>
+    {% endif %}
+</div>

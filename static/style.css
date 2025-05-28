@@ -1,0 +1,122 @@
+/* Metal Arcane Forge Theme */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
+
+body {
+    font-family: 'Cinzel', serif;
+    background-color: #1b1b1b;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-denim.png");
+    color: #ccc;
+    margin: 0;
+    padding: 2rem;
+}
+
+/* Headers */
+h1, h2 {
+    color: #9f8be0;
+    text-shadow: 0 0 8px #4e3d82;
+    margin-bottom: 1rem;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+/* Form box */
+form {
+    background: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(158, 129, 255, 0.3);
+    margin-top: 1.5rem;
+}
+
+/* Labels and Inputs */
+label {
+    display: block;
+    color: #c3aaff;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.4rem;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+/* Buttons */
+button {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #6e54d3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px #8a6fff;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #8f74f0;
+    box-shadow: 0 0 12px #bba3ff;
+}
+
+/* Spell Cards */
+li {
+    background-color: #2c2c2c;
+    border-left: 4px solid #8855ff;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+    color: #9f8be0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-shadow: 0 0 6px #c4b1ff;
+}
+.spell-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(to right, #6a5acd, #8a2be2);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(186, 134, 255, 0.5);
+    transition: all 0.25s ease-in-out;
+}
+
+.spell-button:hover {
+    background: linear-gradient(to right, #836fff, #a066e2);
+    box-shadow: 0 0 18px rgba(207, 165, 255, 0.8);
+    transform: scale(1.03);
+}
+
+.spell-id {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 0.3rem;
+    display: inline-block;
+}

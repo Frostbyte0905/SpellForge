@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpellForge Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Spellbook for Mage: {{ mage_id }}</h1>
+    <ul>
+        <li><a href="{{ url_for('known_spells', mage_id=mage_id) }}">View Known Spells</a></li>
+        <li><a href="{{ url_for('forge', mage_id=mage_id) }}">Forge New Spell</a></li>
+    </ul>
+</body>
+</html>

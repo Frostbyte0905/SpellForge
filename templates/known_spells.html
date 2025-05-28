@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Known Spells</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function filterSpells() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const list = document.getElementById("spellList").children;
+            for (let spell of list) {
+                const name = spell.textContent.toLowerCase();
+                spell.style.display = name.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Known Spells for Mage: {{ mage_id }}</h1>
+
+    <!-- Sort Dropdown -->
+    <form method="get" style="margin-bottom: 1rem;">
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort" onchange="this.form.submit()">
+            <option value="learned" {% if current_sort == 'learned' %}selected{% endif %}>Order Learned</option>
+            <option value="alpha" {% if current_sort == 'alpha' %}selected{% endif %}>Alphabetical</option>
+            <option value="core" {% if current_sort == 'core' %}selected{% endif %}>Core Spell</option>
+        </select>
+        <input type="hidden" name="mage_id" value="{{ mage_id }}">
+    </form>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" onkeyup="filterSpells()" placeholder="Search spells..." style="margin-bottom: 1rem; width: 100%; padding: 0.5rem; font-size: 1rem;">
+
+    <!-- Spell List -->
+    <ul id="spellList">
+        {% for spell in spells %}
+            <li style="margin-bottom: 1.5rem;">
+                <a href="{{ url_for('spell_detail', spell_id=spell['id']) }}" class="spell-button">
+                    {{ spell["name"] }}
+                </a><br>
+                <small class="spell-id">ID: {{ spell["id"] }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('menu', mage_id=mage_id) }}">Back to Menu</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spell Forged</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>{{ spell['name'] }}</h1>
+    <p style="color: #888;"><strong>ID:</strong> {{ spell['id'] }}</p>
+
+    <p><strong>School:</strong> {{ spell['school'] }}</p>
+    <p><strong>Range:</strong> {{ spell['spell_range'] }}</p>
+    <p><strong>Duration:</strong> {{ spell['duration'] }}</p>
+    <p><strong>Description:</strong> {{ spell['description'] }}</p>
+    <p><strong>Higher Levels:</strong> {{ spell['higher_levels'] }}</p>
+
+    {% if known %}
+        <p>This spell was already known by this mage.</p>
+    {% else %}
+        <p>This spell has been newly added to the mage's spellbook.</p>
+    {% endif %}
+
+    <a href="{{ url_for('menu', mage_id=mage_id) }}">Back to Menu</a>
+</body>
+</html>

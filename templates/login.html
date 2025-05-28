@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Enter Mage ID</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: red;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label for="mage_id">Mage ID:</label>
+        <input type="text" name="mage_id" required>
+        <button type="submit">Enter</button>
+    </form>
+</body>
+</html>
