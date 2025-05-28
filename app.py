@@ -12,7 +12,9 @@ Session(app)
 ADMIN_PASSWORD = "FORGE!"  # change this as needed
 
 def get_db_connection():
-    conn = sqlite3.connect('spells.db')
+    import os
+    DB_PATH = os.getenv("SPELLFORGE_DB", "spells.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 @app.route("/", methods=["GET", "POST"])
