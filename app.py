@@ -21,7 +21,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-ADMIN_PASSWORD = "FORGE!"  # change this as needed
+ADMIN_PASSWORD = "FORGE!"
 
 def get_db_connection():
     import os
@@ -71,7 +71,7 @@ def known_spells(mage_id):
         query += " ORDER BY name COLLATE NOCASE"
     elif sort == "core":
         query += " ORDER BY id COLLATE NOCASE"
-    # 'learned' means no specific ORDER BY clause (or we could add a timestamp later)
+    # 'learned' means no specific ORDER BY clause
 
     spells = conn.execute(query, params).fetchall()
     conn.close()
