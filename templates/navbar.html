@@ -1,5 +1,8 @@
 <div style="background: #111; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
     <div>
+        {% if session.get('mage_id') == "EDIT" %}
+            <a href="{{ url_for('spell_editor', mage_id='EDIT') }}" class="spell-button">Editor</a>
+        {% endif %}
         <a href="{{ url_for('menu', mage_id=session.get('mage_id')) }}" class="spell-button">Menu</a>
         <a href="{{ url_for('known_spells', mage_id=session.get('mage_id')) }}" class="spell-button">Known Spells</a>
         <a href="{{ url_for('forge', mage_id=session.get('mage_id')) }}" class="spell-button">Forge</a>

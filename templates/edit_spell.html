@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Spell</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Edit Spell: {{ spell_id }}</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: green;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ spell.name if spell else '' }}" required>
+
+        <label for="school">School:</label>
+        <input type="text" name="school" value="{{ spell.school if spell else '' }}" required>
+
+        <label for="casting_time">Casting Time:</label>
+        <input type="text" name="casting_time" value="{{ spell.casting_time if spell else '' }}" required>
+
+        <label for="spell_range">Range:</label>
+        <input type="text" name="spell_range" value="{{ spell.spell_range if spell else '' }}" required>
+
+        <label for="duration">Duration:</label>
+        <input type="text" name="duration" value="{{ spell.duration if spell else '' }}" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" rows="4" required>{{ spell.description if spell else '' }}</textarea>
+
+        <label for="higher_levels">Higher Levels:</label>
+        <textarea name="higher_levels" rows="3">{{ spell.higher_levels if spell else '' }}</textarea>
+
+        <button type="submit">Save Spell</button>
+    </form>
+</body>
+</html>

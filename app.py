@@ -142,5 +142,73 @@ def spell_detail(spell_id):
     else:
         return "Spell not found", 404
 
+@app.route("/editor/<mage_id>", methods=["GET", "POST"])
+def spell_editor(mage_id):
+    if mage_id != "EDIT":
+        flash("Access denied.")
+        return redirect(url_for("menu", mage_id=mage_id))
+
+    if request.method == "POST":
+        core = request.form["core"]
+        shape_input = request.form["shape"]
+        element = request.form["element"]
+
+        shape_map = {
+            "Proj": "Projectile",
+            "AoE": "Area of Effect"
+        }
+        shape = shape_map.get(shape_input, shape_input)
+        spell_id = f"{core}{shape}+{element}"
+
+        conn = get_db_connection()
+        spell = conn.execute("SELECT * FROM spell WHERE id = ?", (spell_id,)).fetchone()
+        conn.close()
+
+        return redirect(url_for("edit_spell", mage_id=mage_id, spell_id=spell_id))
+
+    return render_template("spell_editor.html", mage_id=mage_id)
+
+
+@app.route("/edit_spell/<mage_id>/<spell_id>", methods=["GET", "POST"])
+def edit_spell(mage_id, spell_id):
+    if mage_id != "EDIT":
+        flash("Access denied.")
+        return redirect(url_for("menu", mage_id=mage_id))
+
+    conn = get_db_connection()
+    spell = conn.execute("SELECT * FROM spell WHERE id = ?", (spell_id,)).fetchone()
+
+    if request.method == "POST":
+        data = {
+            "id": spell_id,
+            "name": request.form["name"],
+            "school": request.form["school"],
+            "casting_time": request.form["casting_time"],
+            "spell_range": request.form["spell_range"],
+            "duration": request.form["duration"],
+            "description": request.form["description"],
+            "higher_levels": request.form["higher_levels"],
+        }
+
+        if spell:
+            conn.execute("""
+                UPDATE spell SET name = ?, school = ?, casting_time = ?, spell_range = ?, duration = ?, description = ?, higher_levels = ?
+                WHERE id = ?
+            """, (data["name"], data["school"], data["casting_time"], data["spell_range"], data["duration"], data["description"], data["higher_levels"], data["id"]))
+        else:
+            conn.execute("""
+                INSERT INTO spell (id, name, school, casting_time, spell_range, duration, description, higher_levels)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (data["id"], data["name"], data["school"], data["casting_time"], data["spell_range"], data["duration"], data["description"], data["higher_levels"]))
+
+        conn.commit()
+        conn.close()
+        flash("Spell saved successfully!")
+        return redirect(url_for("edit_spell", mage_id=mage_id, spell_id=spell_id))
+
+    conn.close()
+    return render_template("edit_spell.html", spell=spell, spell_id=spell_id, mage_id=mage_id)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000, debug=False)

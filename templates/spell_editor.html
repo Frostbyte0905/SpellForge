@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spell Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Spell Editor – Select Combination</h1>
+
+    <form method="POST">
+        <label for="core">Core Spell:</label>
+        <select name="core" required>
+            <option value="Bolt+">Arcane Bolt</option>
+            <option value="Barrier+">Arcane Barrier</option>
+            <option value="Snare+">Arcane Snare</option>
+            <option value="Guidance+">Arcane Guidance</option>
+        </select><br>
+
+        <label for="shape">Shape:</label>
+        <select name="shape" required>
+            <option value="Proj">Projectile</option>
+            <option value="Self">Self</option>
+            <option value="Touch">Touch</option>
+            <option value="Beam">Beam</option>
+            <option value="AoE">Area of Effect</option>
+            <option value="Rune">Rune</option>
+            <option value="Line">Line</option>
+            <option value="Zone">Zone</option>
+        </select><br>
+
+        <label for="element">Element:</label>
+        <select name="element" required>
+            <option value="Acid">Acid</option>
+            <option value="Cold">Cold</option>
+            <option value="Fire">Fire</option>
+            <option value="Force">Force</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Necrotic">Necrotic</option>
+            <option value="Poison">Poison</option>
+            <option value="Psychic">Psychic</option>
+            <option value="Radiant">Radiant</option>
+            <option value="Thunder">Thunder</option>
+        </select><br>
+
+        <button type="submit">Edit or Create Spell</button>
+    </form>
+</body>
+</html>
